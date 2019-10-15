@@ -1,0 +1,91 @@
+<script type="text/javascript">
+
+    function addScript( src ) {
+        var s = document.createElement( 'script' );
+        s.setAttribute( 'src', src );
+        document.body.appendChild( s );
+        return s;
+    }
+
+    function addStyle( src ) {
+        var s = document.createElement( 'link' );
+        s.setAttribute( 'rel', 'stylesheet' );
+        s.setAttribute( 'type', 'text/css' );
+        s.setAttribute( 'href', src );
+        document.body.appendChild( s );
+        return s;
+    }
+
+    addScript("https://cdnjs.cloudflare.com/ajax/libs/grapesjs/0.15.8/grapes.js").addEventListener('load', function() {
+        addScript("https://unpkg.com/grapesjs-blocks-basic@0.1.8/dist/grapesjs-blocks-basic.min.js");
+    });
+    addStyle("https://cdnjs.cloudflare.com/ajax/libs/grapesjs/0.15.8/css/grapes.min.css");
+    
+
+    RED.nodes.registerType('grapejs_config',{
+        category: 'config',
+        color: 'rgb(176, 223, 227)',
+        defaults: {
+            name: {
+                value: ''
+            },
+            template: {
+                value: ''
+            }
+        },
+        inputs:1,
+        outputs:1,
+        label: function() {
+            return this.name || 'Template'
+        },
+        oneditprepare: function() {
+
+            const template = JSON.parse(this.template || '{}');
+
+            const opts = {
+              container: '#node-input-template',
+              height: '100%',
+              noticeOnUnload: 1,
+              plugins: ['gjs-blocks-basic'],
+              storageManager: false,
+              style: template.style || "",
+              components: template.html || "<div>Hello</div>"
+            };
+
+            const editorInst = grapesjs.init(opts);
+
+            this.editorInst = editorInst;
+
+            editorInst.on('update', (a) => {
+                const data = JSON.stringify({
+                    html: editorInst.getHtml(),
+                    style: editorInst.getCss()
+                })
+                $("#node-config-input-template").val(data);
+            })
+        },
+        oneditsave: function () {
+            if(this.editorInst) {
+                const data = JSON.stringify({
+                    html: this.editorInst.getHtml(),
+                    style: this.editorInst.getCss()
+                })
+                $("#node-config-input-template").val(data);
+            }
+        }
+    });
+
+</script>
+
+<script type="text/x-red" data-template-name="grapejs_config">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-config-input-name">
+    </div>
+    <div id="node-input-template"></div>
+    <input type="hidden" id="node-config-input-template">
+</script>
+
+<script type="text/x-red" data-help-name="grapejs_config">
+    <p>Will Come</p>
+</script>

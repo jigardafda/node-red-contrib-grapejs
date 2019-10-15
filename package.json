@@ -1,0 +1,21 @@
+{
+  "name": "red-contrib-grapesjs",
+  "version": "0.1.0",
+  "description": "Templatized GrapeJS Editor for Node RED",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jigar Dafda<jigar.dafda@gmail.com>",
+  "node-red": {
+    "version": ">=0.14.0",
+    "nodes": {
+      "Grapejs-Template": "nodes/template_config.js",
+      "Grapejs-Render": "nodes/template_render.js"
+    }
+  },
+  "license": "ISC",
+  "dependencies": {
+    "nunjucks": "^3.2.0"
+  }
+}

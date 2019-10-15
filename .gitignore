@@ -1,0 +1,30 @@
+# package directories
+node_modules
+jspm_packages
+
+artifacts
+
+.nyc_output
+.vscode
+
+# Serverless directories
+.serverless
+.idea
+tmp/*
+
+*.rdb
+
+*.log
+
+test/tmp/*
+
+ansible/deploy.retry
+
+.vagrant/
+
+.DS_Store
+
+
+coverage
+
+spec/tmp
