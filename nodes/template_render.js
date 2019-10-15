@@ -10,7 +10,8 @@ module.exports = function(RED) {
 
 		this.on('input', function(msg) {
 			const data = JSON.parse(templateNode.template || '{}');
-			const cString = nunjucks.renderString(data.html || '', msg);
+			const content = (data.style ? `<style>${data.style}<style>` : '') + (data.html || '')
+			const cString = nunjucks.renderString(content, msg);
 			msg.payload = cString;
 			node.send(msg);
 		});
