@@ -1,5 +1,5 @@
 {
-  "name": "red-contrib-grapesjs",
+  "name": "node-red-contrib-grapejs",
   "version": "0.1.0",
   "description": "Templatized GrapeJS Editor for Node RED",
   "main": "index.js",
