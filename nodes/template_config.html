@@ -17,7 +17,7 @@
     }
 
     addScript("https://cdnjs.cloudflare.com/ajax/libs/grapesjs/0.15.8/grapes.js").addEventListener('load', function() {
-        addScript("https://unpkg.com/grapesjs-blocks-basic@0.1.8/dist/grapesjs-blocks-basic.min.js");
+        // addScript("https://unpkg.com/grapesjs-blocks-basic@0.1.8/dist/grapesjs-blocks-basic.min.js");
         addScript("https://cdn.jsdelivr.net/npm/grapesjs-preset-webpage@0.1.11/dist/grapesjs-preset-webpage.min.js");
     });
     addStyle("https://cdnjs.cloudflare.com/ajax/libs/grapesjs/0.15.8/css/grapes.min.css");
@@ -48,7 +48,7 @@
               container: '#node-input-template',
               height: '100%',
               noticeOnUnload: 1,
-              plugins: ['gjs-blocks-basic'],
+              plugins: [ 'grapesjs-preset-webpage'],
               storageManager: false,
               style: template.style || "",
               components: template.html || "<div>Hello</div>"
